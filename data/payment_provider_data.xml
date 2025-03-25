@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Tạo record cho Payment Provider PayOS, ở trạng thái 'enabled' hoặc 'test' tùy ý -->
+    <record id="payment_provider_payos" model="payment.provider">
+        <field name="name">PayOS</field>
+        <field name="code">payos</field>
+        <field name="state">enabled</field>
+        <!-- Trường hợp muốn thiết lập mặc định -->
+        <field name="payos_api_key">206eb8b8-8235-4d04-bf29-c80c6fba9604</field>
+        <field name="payos_secret_key">9aea7b533c78859d129edba2744799f727f310c687ee23a7899b5bb92ccdc942</field>
+        <field name="payos_client_id">e81f8115-cd32-4662-a806-99a3410a8eab</field>
+        
+    </record>
+</odoo>

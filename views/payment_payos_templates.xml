@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="payos_redirect_form">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <h2>Redirecting to PayOS...</h2>
+                <form id="payos_payment_form" t-att-action="api_url" method="post">
+                    <input type="hidden" name="orderCode" t-att-value="orderCode"/>
+                    <input type="hidden" name="amount" t-att-value="amount"/>
+                    <input type="hidden" name="currency" t-att-value="currency"/>
+                    <input type="hidden" name="returnUrl" t-att-value="return_url"/>
+                    <input type="hidden" name="notifyUrl" t-att-value="notify_url"/>
+                    <input type="hidden" name="signature" t-att-value="sign"/>
+                    <button type="submit" style="display: none;">Submit</button>
+                </form>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var form = document.getElementById("payos_payment_form");
+                        if (form) {
+                            form.submit();
+                        } else {
+                            console.error("PayOS form not found!");
+                        }
+                    });
+                </script>
+            </div>
+        </t>
+    </template>
+</odoo>
