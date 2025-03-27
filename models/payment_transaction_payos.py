@@ -32,7 +32,7 @@ class PaymentTransaction(models.Model):
         if response.status_code == 200:
             result = response.json()
             checkout_url = result.get("checkoutUrl")
-            # Nếu URL không phải là tuyệt đối, thêm domain nếu cần
+            
             if checkout_url and not checkout_url.startswith("http"):
                 checkout_url = "https://payos.vn" + checkout_url
             return checkout_url
@@ -47,7 +47,7 @@ class PaymentTransaction(models.Model):
             _logger.error("Không tạo được link thanh toán từ PayOS")
             return super()._processRedirectPayment(data)
         self.write({'payos_payment_url': payment_url})
-        # Tạo các giá trị cần truyền vào template
+        
         values = {
             'payos_url': payment_url,
             'orderCode': self.reference,
@@ -57,5 +57,5 @@ class PaymentTransaction(models.Model):
             'cancel_url': "/payment/payos/cancel",
             'webhook_url': "/payment/payos/webhook",
         }
-        # Trả về giao diện được render từ template "payment_payos.checkout"
+        
         return request.render("payment_payos.checkout", values)
