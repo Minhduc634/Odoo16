@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="payos_redirect_form">
+    <template id="payment_payos.checkout" t-name="payment_payos.checkout">
         <t t-call="website.layout">
-            <div class="oe_structure">
-                <h2>Redirecting to PayOS...</h2>
-                <form id="payos_payment_form" t-att-action="api_url" method="post">
+            <div class="oe_structure text-center" style="margin-top: 50px;">
+                <h2>Redirecting to PayOS Payment Page...</h2>
+                <form id="o_payment_form_payos" method="post" t-att-action="payos_url">
                     <input type="hidden" name="orderCode" t-att-value="orderCode"/>
                     <input type="hidden" name="amount" t-att-value="amount"/>
                     <input type="hidden" name="currency" t-att-value="currency"/>
                     <input type="hidden" name="returnUrl" t-att-value="return_url"/>
-                    <input type="hidden" name="notifyUrl" t-att-value="notify_url"/>
-                    <input type="hidden" name="signature" t-att-value="sign"/>
-                    <button type="submit" style="display: none;">Submit</button>
+                    <input type="hidden" name="cancelUrl" t-att-value="cancel_url"/>
+                    <input type="hidden" name="webhookUrl" t-att-value="webhook_url"/>
+                    <button type="submit" class="btn btn-primary">Proceed to PayOS</button>
                 </form>
-                <script>
+                <script type="text/javascript">
                     document.addEventListener("DOMContentLoaded", function() {
-                        var form = document.getElementById("payos_payment_form");
+                        var form = document.getElementById("o_payment_form_payos");
                         if (form) {
                             form.submit();
                         } else {
-                            console.error("PayOS form not found!");
+                            console.error("Payment form not found!");
                         }
                     });
                 </script>
